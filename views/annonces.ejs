@@ -1,0 +1,46 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form action="/deposer" method="POST" enctype="multipart/form-data">
+                <div class="row bandeau"><p>Votre annonce</p></div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Titre de l'annonce</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Texte annonce</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Prix</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Photo</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="photo">
+                </div>
+                <div class="row bandeau"><p>Localisation</p></div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Ville ou code postal</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="city">
+                </div>
+                <div class="row bandeau"><p>Vos informations</p></div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Pseudo</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="pseudo">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Téléphone</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="telephone">
+                </div>
+                <button type="submit" class="btn btn-primary">Valider</button>     
+            </form>
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>

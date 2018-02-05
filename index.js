@@ -20,7 +20,6 @@ app.get('/deposer', function (req, res) {
 });
 
 app.post('/deposer', upload.single("photo"), function (req, res) {
-    console.log(req.file);
     var offer = {};
     offer.id = idCounter;
     offer.title = req.body.title;

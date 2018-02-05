@@ -23,10 +23,12 @@
 .bloc {
     border: 1px solid grey;
     padding-bottom: 20px;
+    margin: 20px 10px 0 0;
 }
 .bloc:first-child {
     margin-right: 10px;
 }
+
 
 .offer{
     margin-top: 20px;
@@ -38,4 +40,12 @@
 
 .title_bloc {
     background: #F2F2F2;
+}
+
+.offerHome img {
+    width: 80%;
+}
+
+.offerHome {
+    padding: 10px;
 }

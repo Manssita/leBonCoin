@@ -1,0 +1,29 @@
+<% include partials/header_in.ejs %>
+<% include partials/nav.ejs %>
+
+<div class="container">
+    <div class="row offer">
+        <div class="col-lg-8 bloc">
+            <h1><%= object.title%></h1>
+            <img src="/uploads/<%= object.photo%>" />
+            <p><%= object.pseudo%></p>
+            <div class="row border">
+                <div class="col-lg-4 title_bloc"><p>Prix</p></div>
+                <div class="col-lg-8"><%= object.price%></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 title_bloc"><p>Ville</p></div>
+                <div class="col-lg-8"><%= object.city%></div>
+            </div>
+            <p>Description :</p>
+            <p><%= object.description%></p>
+            
+        </div>
+        <div class="col-lg-3 bloc">
+           <p><%= object.pseudo%></p>
+           <p><%= object.telephone%></p>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer.ejs %>

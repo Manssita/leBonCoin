@@ -7,6 +7,7 @@ var upload = multer({ dest: 'public/uploads/' });
 app.use(express.static("public"));
 
 var offers= [];
+var idCounter= 0;
 
 app.get('/', function (req, res) {
     res.render('home.ejs', {
@@ -21,6 +22,7 @@ app.get('/deposer', function (req, res) {
 app.post('/deposer', upload.single("photo"), function (req, res) {
     console.log(req.file);
     var offer = {};
+    offer.id = idCounter;
     offer.title = req.body.title;
     offer.description = req.body.description;
     offer.price = req.body.price;
@@ -29,8 +31,17 @@ app.post('/deposer', upload.single("photo"), function (req, res) {
     offer.pseudo = req.body.pseudo;
     offer.email = req.body.email;
     offer.telephone = req.body.telephone;
+
+    idCounter++;
     offers.push(offer);
     res.redirect('/');
+});
+
+app.get('/annonce/:id', function (req, res) {
+    var id = req.params.id;
+    res.render('annonce_id.ejs', {
+        object: offers[id]
+    });
 });
 
 app.listen(3000, function () {

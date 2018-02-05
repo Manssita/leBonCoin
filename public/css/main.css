@@ -1,3 +1,41 @@
 .bandeau {
     background: grey;
 }
+.navbar {
+    background: #f36b36 !important;
+}
+.navbar li a{
+    color: #fff !important;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.form_offer {
+    margin-top: 30px;
+    border: 1px solid grey;
+    padding: 10px;
+}
+
+.bloc {
+    border: 1px solid grey;
+    padding-bottom: 20px;
+}
+.bloc:first-child {
+    margin-right: 10px;
+}
+
+.offer{
+    margin-top: 20px;
+}
+.offer img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.title_bloc {
+    background: #F2F2F2;
+}

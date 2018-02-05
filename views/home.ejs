@@ -1,8 +1,8 @@
 <% include partials/header.ejs %>
-<a href="/deposer">Ajouter une annonce</a>
+<% include partials/nav.ejs %>
 <% for (var i = 0; i < object.length; i++) { %>
     <p><%= object[i].title%></p>
-    <img src="/uploads/<%= object[i].photo%>" />
+    <a href="/annonce/<%= object[i].id %>"><img src="/uploads/<%= object[i].photo%>" /></a>
 <% } %>
 
 <% include partials/footer.ejs %>

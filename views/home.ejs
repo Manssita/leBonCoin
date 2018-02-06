@@ -1,15 +1,15 @@
 <% include partials/header.ejs %>
 <% include partials/nav.ejs %>
     <div class="container">
-        <% for (var i = 0; i < object.length; i++) { %>
+        <% for (var i = 0; i < prod.length; i++) { %>
             <div class="row bloc">
                 <div class="col-lg-4 offerHome">
-                    <a href="/annonce/<%= object[i].id %>"><img src="/uploads/<%= object[i].photo%>" /></a>
+                    <a href="/annonce/<%= prod[i].id %>"><img src="/uploads/<%= prod[i].photo%>" /></a>
                 </div>
                 <div class="col-lg-8 offerHome">
-                    <p><%= object[i].title%></p>
-                    <p><%= object[i].city%></p>
-                    <p><%= object[i].price%></p>
+                    <p><%= prod[i].title%></p>
+                    <p><%= prod[i].city%></p>
+                    <p><%= prod[i].price%></p>
                 </div>
             </div>
         <% } %>

@@ -111,6 +111,13 @@ app.post('/modifier/:id', upload.single("photo"), function (req, res) {
       
 });
 
+app.get('/supprimer/:id', function (req, res) {
+    Annonce.deleteOne({ _id: req.params.id }, function (err) {
+        if (!err){
+            res.redirect("/");
+        }
+    });
+});
 app.listen(3000, function () {
     console.log('Server started');
 });

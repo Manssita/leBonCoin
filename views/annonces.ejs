@@ -7,15 +7,15 @@
                 <div class="bandeau"><p>Votre annonce</p></div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Titre de l'annonce</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="title">
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="title" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Texte annonce</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Prix</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" name="price">
+                    <input type="text" class="form-control" id="formGroupExampleInput2" name="price" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Photo</label>
@@ -24,20 +24,20 @@
                 <div class="bandeau"><p>Localisation</p></div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Ville ou code postal</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="city">
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="city" required>
                 </div>
                 <div class="bandeau"><p>Vos informations</p></div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Pseudo</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="pseudo">
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="pseudo" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" onblur="verifMail(this)" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Téléphone</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="telephone">
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="telephone" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Valider</button>     
             </form>

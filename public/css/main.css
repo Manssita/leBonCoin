@@ -49,3 +49,7 @@
 .offerHome {
     padding: 10px;
 }
+
+input:focus:invalid, textarea:focus:invalid {
+    border: 1px solid red;
+}

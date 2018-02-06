@@ -65,7 +65,7 @@ app.post('/deposer', upload.single("photo"), function (req, res) {
 
 app.get('/annonce/:id', function (req, res) {
     var id = req.params.id;
-    Annonce.find({}, function(err, prod) {
+    Annonce.find({_id: id}, function(err, prod) {
         res.render('annonce_id.ejs', {
             prod : prod[0],
         });

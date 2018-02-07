@@ -53,3 +53,31 @@
 input:focus:invalid, textarea:focus:invalid {
     border: 1px solid red;
 }
+
+.price {
+    font-weight: bold;
+    color: #f36b36;
+}
+
+.title {
+    font-weight: bold;
+    color: #416F9A;
+}
+
+.showTel {
+    font-weight: bold;
+    background: #f36b36;
+    color: #fff;
+    text-align: center;
+    margin-top: -40px;
+    z-index: 10;
+    position: relative;
+}
+
+.showTel:hover {
+    cursor: pointer;
+}
+
+.showTel .fa-phone {
+    transform: rotate(90deg);
+}

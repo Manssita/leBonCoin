@@ -15,7 +15,18 @@
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Prix</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" name="price" value="<%= prod.price %>">
+                    <input type="text" class="form-control" id="formGroupExampleInput2" name="price" pattern="[0-9]{1,}" value="<%= prod.price %>">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Type d'annonce</label>
+                    <select class="custom-select" name="addTypeProd">
+                        <option value="offre"
+                        <% if(prod.offer === "offre") { %> <%= " selected" %> <% } %>
+                            >Offre</option>
+                        <option value="demande"
+                        <% if(prod.offer === "demande") { %> <%= " selected" %> <% } %>
+                            >Demande</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Photo</label>
@@ -33,11 +44,21 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="<%= prod.email %>">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" value="<%= prod.email %>">
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Téléphone</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" name="telephone" value="<%= prod.telephone %>">
+                    <input type="text" class="form-control" id="formGroupExampleInput" name="telephone" pattern="[0-9]{10}" value="<%= prod.telephone %>">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Vous êtes un</label>
+                    <select class="custom-select" name="addType">
+                        <option value="particulier"
+                        <%= prod.type === "particulier" ? " selected" : "" %>
+                        >Particulier</option>
+                        <option value="professionel" <%= prod.type === "professionel" ? " selected" : "" %>
+                        >Professionel</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Valider</button>     
             </form>

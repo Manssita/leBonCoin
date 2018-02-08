@@ -1,10 +1,10 @@
 <% include partials/header.ejs %>
 <% include partials/nav.ejs %>
-    <div class="container">
+    <div class="container in">
         <% for (var i = 0; i < prod.length; i++) { %>
             <div class="row bloc">
                 <div class="col-lg-4 offerHome">
-                    <a href="/annonce/<%= prod[i]._id %>"><img src="/uploads/<%= prod[i].photo%>" /></a>
+                    <a href="/annonce/<%= prod[i]._id %>"><img src="/uploads/<%= prod[i].photo[0].filename%>" /></a>
                 </div>
                 <div class="col-lg-8 offerHome">
                     <p class="title"><%= prod[i].title%></p>
@@ -13,7 +13,10 @@
                 </div>
             </div>
         <% } %>
+        <ul>
+            <% for (var j = 1; j < count+1; j++) { %>
+                <li><a href="/?p=<%= j %>"><%= j %></a></li>
+                <% } %>
+        </ul>
     </div> 
-
-
 <% include partials/footer.ejs %>

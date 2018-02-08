@@ -21,7 +21,7 @@ var bonCoinSchema = new mongoose.Schema({
     description: String,
     price: Number,
     offer: String,
-    photo: String,
+    photo: [],
     city: String,
     pseudo: String,
     email: String,
@@ -32,31 +32,37 @@ var bonCoinSchema = new mongoose.Schema({
 // 2) Definir le model - A faire qu'une fois
 var Annonce = mongoose.model("Annonce", bonCoinSchema);
 
+//add pagination npm mongoose query
+var limit = 1;
+
 app.get('/', function (req, res) {
-    Annonce.find({}, function(err, prod) {
-        res.render('home.ejs', {
-            prod : prod,
-        });
-    });
-});
+Annonce.count({}, function(err, count){
+        Annonce.find({}, function(err, prod) {
+            res.render('home.ejs', {
+                prod : prod,
+                count: count,
+            });
+        }).limit(limit).skip(req.query.p * limit - limit);
+    })
+})
 
 // pages add offers
 app.get('/deposer', function (req, res) {
     res.render('annonces.ejs');
 });
 
-app.post('/deposer', upload.single("photo"), function (req, res) {
+app.post('/deposer', upload.any("photo"), function (req, res) {
     var title = req.body.title;
     var description = req.body.description;
     var price = req.body.price;
     var offer = req.body.addTypeProd;
-    var photo = req.file.filename;
+    var photo = req.files;
     var city = req.body.city;
     var pseudo = req.body.pseudo;
     var email = req.body.email;
     var telephone = req.body.telephone;
     var type = req.body.addType;
-
+    console.log("photo", photo[0].filename)
     // 3) Créer des documents
     var prod = new Annonce({
         title: title,
@@ -96,12 +102,13 @@ app.get('/modifier/:id', function (req, res){
         });
     });
 });
-app.post('/modifier/:id', upload.single("photo"), function (req, res) {
+
+app.post('/modifier/:id', upload.any("photo"), function (req, res) {
     var title = req.body.title;
     var description = req.body.description;
     var price = req.body.price;
     var offer = req.body.addTypeProd;
-    var photo = req.file;
+    var photo = req.files;
     var city = req.body.city;
     var pseudo = req.body.pseudo;
     var email = req.body.email;
@@ -123,7 +130,7 @@ app.post('/modifier/:id', upload.single("photo"), function (req, res) {
         prodNew.photo = photo.filename;
     }
 
-    Annonce.findOneAndUpdate({_id: req.params.id}, prodNew, function(err, prod) {
+    Annonce.findOneAndUpdate({_id: req.params.id}, {"$set": prodNew}, {upsert: true}, function(err, prod) {
         if (!err){
             res.redirect('/annonce/'+ req.params.id)
         }
@@ -140,25 +147,58 @@ app.get('/supprimer/:id', function (req, res) {
     });
 });
 
-// page type offer 
-app.get('/offres', function (req, res) {
-    var id = req.params.id;
-    Annonce.find({offer: "offre"}, function(err, prod) {
-        res.render('offers.ejs', {
-            prod : prod,
-        });
-    });
-});
-
 // page type demand 
 app.get('/demandes', function (req, res) {
-    var id = req.params.id;
-    Annonce.find({offer: "demande"}, function(err, prod) {
-        res.render('demands.ejs', {
-            prod : prod,
+    var response = req.query.who;
+    if(!response){
+        Annonce.find({offer: "demande"}, function(err, prod) {
+            res.render('demands.ejs', {
+                prod : prod,
+            });
         });
-    });
+    }
+    if(response === "particulier"){
+        Annonce.find({offer: "demande", type: "particulier"}, function(err, prod) {
+            res.render('demands.ejs', {
+                prod : prod,
+            });
+        });
+    }
+    if(response === "professionel"){
+        Annonce.find({offer: "demande", type: "professionel"}, function(err, prod) {
+            res.render('demands.ejs', {
+                prod : prod,
+            });
+        });
+    }
 });
+
+// page type offer 
+app.get('/offres', function (req, res) {
+    var response = req.query.who;
+    if(!response){
+        Annonce.find({offer: "offre"}, function(err, prod) {
+            res.render('offers.ejs', {
+                prod : prod,
+            });
+        });
+    }
+    if(response === "particulier"){
+        Annonce.find({offer: "offre", type: "particulier"}, function(err, prod) {
+            res.render('offers.ejs', {
+                prod : prod,
+            });
+        });
+    }
+    if(response === "professionel"){
+        Annonce.find({offer: "offre", type: "professionel"}, function(err, prod) {
+            res.render('offers.ejs', {
+                prod : prod,
+            });
+        });
+    }
+});
+
 // start
 app.listen(3000, function () {
     console.log('Server started');

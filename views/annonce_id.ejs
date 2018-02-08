@@ -1,31 +1,35 @@
 <% include partials/header_in.ejs %>
 <% include partials/nav.ejs %>
 
-<div class="container">
+<div class="container in">
     <div class="row offer">
         <div class="col-lg-8 bloc">
             <h1><%= prod.title%></h1>
             <p><%= prod.offer%></p>
-            <img src="/uploads/<%= prod.photo%>" />
+            <% for (var i = 0; i < prod.photo.length; i++) { %> 
+            <img class="justify-item-center" src="/uploads/<%= prod.photo[i].filename%>" />
+            <% } %>
             <p><%= prod.pseudo%> - <%= prod.type%></p>
 
-            <div class="row border">
+            <div class="row borderLast">
                 <div class="col-lg-4 title_bloc"><p>Prix</p></div>
                 <div class="col-lg-8 price"><%= prod.price%> &euro;</div>
             </div>
-            <div class="row">
+            <div class="row borderLast">
                 <div class="col-lg-4 title_bloc"><p>Ville</p></div>
                 <div class="col-lg-8"><%= prod.city%></div>
             </div>
             <p><strong>Description :</strong></p>
             <p><%= prod.description%></p>
-            <a href="/modifier/<%= prod._id %>">Modifier</a>
-            <a href="/supprimer/<%= prod._id %>">Supprimer</a>
         </div>
         <div class="col-lg-3 bloc">
            <p><%= prod.pseudo%></p>
            <p><%= prod.telephone%></p>
            <div class="showTel"><i class="fas fa-phone"></i> Voir le numéro</div>
+           <div class="editLink">
+                <a href="/modifier/<%= prod._id %>">Modifier</a>
+                <a href="/supprimer/<%= prod._id %>">Supprimer</a>
+            </div>
         </div>
     </div>
 </div>

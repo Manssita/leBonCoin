@@ -1,7 +1,20 @@
+h1 {
+    font-size: 18px;
+    line-height: 27px;
+    color: #989898;
+    font-weight: bold;
+}
+
+.in {
+    padding: 30px 0;
+}
 .bandeau {
     background: grey;
 }
 .navbar {
+    background: #f36b36 !important;
+}
+.active {
     background: #f36b36 !important;
 }
 .navbar li a{
@@ -36,12 +49,22 @@
 .offer img {
     max-width: 400px;
     max-height: 400px;
+    display: block;
+    margin: 20px auto;
 }
 
 .title_bloc {
     background: #F2F2F2;
 }
 
+.borderLast {
+    border-bottom: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+
+}
+.borderLast:last-child{
+    border-top: none;
+}
 .offerHome img {
     width: 80%;
 }
@@ -80,4 +103,33 @@ input:focus:invalid, textarea:focus:invalid {
 
 .showTel .fa-phone {
     transform: rotate(90deg);
+}
+
+.subMenu a {
+    display: inline-block;
+    background: #5096EC;
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+}
+.subMenu a:hover {
+    background: #f36b36;
+}
+
+.editLink a {
+    display: block;
+    background: #F2F2F2;
+    color: #000;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.editLink a:first-child {
+    margin: 5px 0;
+}
+
+.editLink a:hover {
+    background: #5096EC;
+    color: #fff;
 }

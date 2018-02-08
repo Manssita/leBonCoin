@@ -1,6 +1,12 @@
 <% include partials/header_in.ejs %>
 <% include partials/nav.ejs %>
-    <div class="container">
+    <div class="container in">
+        <h1>Annonces :</h1>
+        <div class="subMenu">
+            <a id="all" class="active" href="/offres">Tout</a>
+            <a id="part" href="/offres?who=particulier">Particulier</a>
+            <a id="pro" href="/offres?who=professionel">Professionel</a>
+        </div>
         <% for (var i = 0; i < prod.length; i++) { %>
             <div class="row bloc">
                 <div class="col-lg-4 offerHome">

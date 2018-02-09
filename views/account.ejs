@@ -1,0 +1,18 @@
+<% include partials/header_in.ejs %>
+<% include partials/nav.ejs %>
+<div class="container in">
+    <div class="row">
+        <div class="col-lg-6">
+            <a href="/logout">Se déconnecter</a>
+            <h1>Page mon compte de <%= user.username %></h1>
+            <% if (prod) { 
+                for (var i = 0; i < prod.length; i++) {%>
+            <ul>
+                <li><%=prod[i].title %></li>
+            </ul>
+            <% }
+        } %>
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>

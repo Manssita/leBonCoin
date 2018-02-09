@@ -1,0 +1,16 @@
+<% include partials/header_in.ejs %>
+<% include partials/nav.ejs %>
+
+<div class="container in">
+    <div class="row bloc">
+        <div class="col-lg-6">
+            <form action= "/login" method="POST">
+                <input type="text" name="username" placeholder="username" />
+                <input type="password" name="password" placeholder="password" />
+                <input type="submit" />
+            </form>
+            Si vous n'avez pas de compte : <a href="/register">créer mon compte</a>
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>

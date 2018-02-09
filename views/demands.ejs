@@ -10,7 +10,7 @@
         <% for (var i = 0; i < prod.length; i++) { %>
             <div class="row bloc">
                 <div class="col-lg-4 offerHome">
-                    <a href="/annonce/<%= prod[i]._id %>"><img src="/uploads/<%= prod[i].photo%>" /></a>
+                    <a href="/annonce/<%= prod[i]._id %>"><img src="/uploads/<%= prod[i].photo[0].filename%>" /></a>
                 </div>
                 <div class="col-lg-8 offerHome">
                     <p class="title"><%= prod[i].title%></p>

@@ -1,6 +1,5 @@
 <% include partials/header_in.ejs %>
 <% include partials/nav.ejs %>
-
 <div class="container in">
     <div class="row offer">
         <div class="col-lg-8 bloc">
@@ -26,10 +25,12 @@
            <p><%= prod.pseudo%></p>
            <p><%= prod.telephone%></p>
            <div class="showTel"><i class="fas fa-phone"></i> Voir le numéro</div>
+           <% if (req.user._id == prod.id_user) { %>
            <div class="editLink">
                 <a href="/modifier/<%= prod._id %>">Modifier</a>
                 <a href="/supprimer/<%= prod._id %>">Supprimer</a>
             </div>
+            <% } %>
         </div>
     </div>
 </div>

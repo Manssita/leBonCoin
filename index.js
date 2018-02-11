@@ -12,6 +12,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var multer = require('multer');
 var upload = multer({ dest: 'public/uploads/' });
 
+// geocoder
+var geocoder = require('google-geocoder');
+ 
+var geo = geocoder({
+  key: 'AIzaSyBp_Jt2c2VcEY9h8IwX-mXnpUSx-UkFp8o'
+});
+
 // mongoose
 var MongoStore = require('connect-mongo')(expressSession);
 var mongoose = require("mongoose");
@@ -46,6 +53,8 @@ var bonCoinSchema = new mongoose.Schema({
     offer: String,
     photo: [],
     city: String,
+    lat: Number,
+    lng: Number,
     pseudo: String,
     email: String,
     telephone: String,
@@ -53,8 +62,15 @@ var bonCoinSchema = new mongoose.Schema({
     id_user: String,
 });
 
+var FavSchema = new mongoose.Schema({
+    title: String,
+    photo: [],
+    id_annonce: String,
+});
+
 // 2) Definir le model - A faire qu'une fois
 var Annonce = mongoose.model("Annonce", bonCoinSchema);
+var Fav = mongoose.model("Favorites", FavSchema);
 
 //add pagination npm mongoose query
 var limit = 1;
@@ -76,36 +92,35 @@ app.get('/deposer', checkUser,  function (req, res) {
 });
 
 app.post('/deposer', upload.any("photo"), function (req, res) {
-    var title = req.body.title;
-    var description = req.body.description;
-    var price = req.body.price;
-    var offer = req.body.addTypeProd;
-    var photo = req.files;
-    var city = req.body.city;
-    var pseudo = req.body.pseudo;
-    var email = req.body.email;
-    var telephone = req.body.telephone;
-    var type = req.body.addType;
-    var id_user = req.user._id;
-    // 3) Créer des documents
-    var prod = new Annonce({
-        title: title,
-        description: description,
-        price: price,
-        offer: offer,
-        photo: photo,
-        city: city,
-        pseudo: pseudo,
-        email: email,
-        telephone: telephone,
-        type: type,
-        id_user: id_user
-    });
-    prod.save(function(err, obj) {
-        if (!err) {
-            res.redirect('/');
-        }
-    });
+    var obj = {
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        offer: req.body.addTypeProd,
+        photo: req.files,
+        city: req.body.city,
+        pseudo: req.body.pseudo,
+        email: req.body.email,
+        telephone: req.body.telephone,
+        type: req.body.addType,
+        id_user: req.user._id,
+    }
+    
+    //
+    geo.find(obj.city, function(err, coords){
+        var lat = coords[0].location.lat;
+        var lng = coords[0].location.lng;
+        obj.lat = lat;
+        obj.lng = lng;
+        // 3) Créer des documents
+        var prod = new Annonce(obj);
+        prod.save(function(err, obj) {
+            if (!err) {
+                res.redirect('/');
+            }
+        }); 
+      });
+    //
 });
 
 // page offers by id 
@@ -171,7 +186,8 @@ app.post('/modifier/:id', upload.any("photo"), function (req, res) {
 
 // pages delete offers
 app.get('/supprimer/:id', checkUser, function (req, res) {
-    Annonce.deleteOne({ _id: req.params.id, user_id: req.user._id }, function (err) {
+    Annonce.deleteOne({ _id: req.params.id, id_user: req.user._id }, function (err, obj) {
+        
         if (!err){
             res.redirect("/");
         }
@@ -241,7 +257,7 @@ app.get('/account', function(req, res) {
           });
         });
     } else {
-      res.redirect('/');
+      res.redirect('/login');
     }
   });
   
@@ -301,19 +317,31 @@ function checkUser(req, res, next) {
         next();    
     }
 }
-//   check si le user est connecté
-function checkUserId (req, res, next, prod) {
-    console.log("req",req.user._id)
-    // if (req.user._id !== prod.id_user) {
-    //     res.redirect('/');
-    // } else {
-    //     next();    
-    // }
-}
 // app.get('/protected', checkUser, function(req, res) {
 // res.render('protected.ejs');
 //   });
-
+app.get("/favorites", function(req, res) {
+    res.render('favorites')
+  });
+// app.get('/favorites', function(req, res, prod) {
+//     Annonce.find({}, function(err, prod) {
+//         var favProd = {}
+//         favProd.title = prod[0].title;
+//         favProd.photo = prod[0].photo;
+//         favProd.id_annonce = prod[0]._id;
+//         console.log("coucou", prod[0]._id)
+        
+//         var favProd = new Fav(favProd);
+//         favProd.save(function(err, favProd) {
+//             if (!err) {
+                
+//             res.render('favorites', {
+//                 prod : prod,
+//             })
+//             }
+//     }); 
+//     })
+// });
 // start
 app.listen(process.env.PORT || 3000, function () {
     console.log('Server started');

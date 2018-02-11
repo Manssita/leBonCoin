@@ -4,15 +4,26 @@ $(document).ready(function(){
         $(this).css("display", "none");
     });
 
+    $(".fav").click(function(){
+        $(".favActive").toggleClass("none");
+    });
+    $(".favActive").click(function(){
+        $(this).toggleClass("none");
+    });
+    $(".linkFav").click(function(){
+        return false;
+    });
+
     var url = window.location.href
     $(function() {
         if ( url.search('professionel') >= 0 ) {
-            $('#pro').addClass("active");
-            $('#all').removeClass("active")
+            $('#pro').addClass("actif");
+            $('#all').removeClass("actif")
         }
         if ( url.search('particulier') >= 0 ) {
-            $('#part').addClass("active");
-            $('#all').removeClass("active")
+            $('#part').addClass("actif");
+            $('#all').removeClass("actif")
         }
     });
+
 });

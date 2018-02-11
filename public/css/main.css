@@ -14,7 +14,7 @@ h1 {
 .navbar {
     background: #f36b36 !important;
 }
-.active {
+.actif {
     background: #f36b36 !important;
 }
 .navbar li a{
@@ -46,9 +46,9 @@ h1 {
 .offer{
     margin-top: 20px;
 }
-.offer img {
-    max-width: 400px;
-    max-height: 400px;
+.offer img.visualProd {
+    max-width: 390px;
+    max-height: 390px;
     display: block;
     margin: 20px auto;
 }
@@ -132,4 +132,30 @@ input:focus:invalid, textarea:focus:invalid {
 .editLink a:hover {
     background: #5096EC;
     color: #fff;
+}
+
+#map {
+    height: 300px;;
+}
+
+.fav {
+    color: #CCCCCC;
+}
+
+.favActive {
+    color: #D9453D;
+    margin-top: -40px;
+}
+
+.fav:hover, .favActive:hover {
+    cursor: pointer;
+}
+
+.none {
+    display: none;
+}
+
+.carousel {
+    width: 60%;
+    margin: 0 auto;
 }

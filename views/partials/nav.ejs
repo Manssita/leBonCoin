@@ -18,12 +18,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="/favorites">Mes annonces sauvegardées</a>
             </li>
+            <% if (user){%>
             <li class="nav-item">
                 <a class="nav-link" href="/account">Mon compte</a>
             </li>
+            <% }
+            else { %>
             <li class="nav-item">
                 <a class="nav-link" href="/login">Se connecter</a>
             </li>
+            <% } %>
             </ul>
         </div>
     </div>

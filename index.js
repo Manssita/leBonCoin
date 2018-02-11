@@ -77,10 +77,12 @@ var limit = 1;
 
 app.get('/', function (req, res) {
 Annonce.count({}, function(err, count){
+    var user =req.user;
         Annonce.find({}, function(err, prod) {
             res.render('home.ejs', {
                 prod : prod,
                 count: count,
+                user: user,
             });
         }).limit(limit).skip(req.query.p * limit - limit);
     })
@@ -88,7 +90,10 @@ Annonce.count({}, function(err, count){
 
 // pages add offers
 app.get('/deposer', checkUser,  function (req, res) {
-    res.render('annonces.ejs');
+    var user =req.user;
+    res.render('annonces.ejs', {
+        user : user
+    });
 });
 
 app.post('/deposer', upload.any("photo"), function (req, res) {
@@ -125,22 +130,26 @@ app.post('/deposer', upload.any("photo"), function (req, res) {
 
 // page offers by id 
 app.get('/annonce/:id', function (req, res, prod) {
+    var user =req.user;
     var id = req.params.id;
     Annonce.find({_id: id}, function(err, prod) {
         res.render('annonce_id.ejs', {
             prod : prod[0],
             req : req,
+            user : user
         });
     });
 });
 
 // pages modify offers
 app.get('/modifier/:id', function (req, res){
+    var user =req.user;
     var id = req.params.id;
     Annonce.find({_id: id}, function(err, prod) {
         if (prod[0].id_user == req.user._id){
         res.render('modifier.ejs', {
             prod : prod[0],
+            user : user
         });
     }
     else {
@@ -186,6 +195,7 @@ app.post('/modifier/:id', upload.any("photo"), function (req, res) {
 
 // pages delete offers
 app.get('/supprimer/:id', checkUser, function (req, res) {
+    var user =req.user;
     Annonce.deleteOne({ _id: req.params.id, id_user: req.user._id }, function (err, obj) {
         
         if (!err){
@@ -196,11 +206,13 @@ app.get('/supprimer/:id', checkUser, function (req, res) {
 
 // page type demand 
 app.get('/demandes', function (req, res) {
+    var user =req.user;
     var response = req.query.who;
     if(!response){
         Annonce.find({offer: "demande"}, function(err, prod) {
             res.render('demands.ejs', {
                 prod : prod,
+                user : user
             });
         });
     }
@@ -208,6 +220,7 @@ app.get('/demandes', function (req, res) {
         Annonce.find({offer: "demande", type: "particulier"}, function(err, prod) {
             res.render('demands.ejs', {
                 prod : prod,
+                user : user
             });
         });
     }
@@ -215,6 +228,7 @@ app.get('/demandes', function (req, res) {
         Annonce.find({offer: "demande", type: "professionel"}, function(err, prod) {
             res.render('demands.ejs', {
                 prod : prod,
+                user : user
             });
         });
     }
@@ -222,11 +236,13 @@ app.get('/demandes', function (req, res) {
 
 // page type offer 
 app.get('/offres', function (req, res) {
+    var user =req.user;
     var response = req.query.who;
     if(!response){
         Annonce.find({offer: "offre"}, function(err, prod) {
             res.render('offers.ejs', {
                 prod : prod,
+                user : user,
             });
         });
     }
@@ -234,6 +250,7 @@ app.get('/offres', function (req, res) {
         Annonce.find({offer: "offre", type: "particulier"}, function(err, prod) {
             res.render('offers.ejs', {
                 prod : prod,
+                user : user
             });
         });
     }
@@ -241,6 +258,7 @@ app.get('/offres', function (req, res) {
         Annonce.find({offer: "offre", type: "professionel"}, function(err, prod) {
             res.render('offers.ejs', {
                 prod : prod,
+                user : user
             });
         });
     }
@@ -262,10 +280,15 @@ app.get('/account', function(req, res) {
   });
   
   app.get('/register', function(req, res) {
+    var user =req.user;
     if (req.isAuthenticated()) {
-      res.redirect('/account');
+      res.redirect('/account', {
+          user : user
+      });
     } else {
-      res.render('register');
+      res.render('register', {
+          user : user
+      });
     }
   });
   
@@ -292,10 +315,13 @@ app.get('/account', function(req, res) {
   });
   
   app.get('/login', function(req, res) {
+    var user =req.user;
     if (req.isAuthenticated()) {
       res.redirect('/account');
     } else {
-      res.render('login');
+      res.render('login',{
+          user : user
+      });
     }
   });
   
@@ -321,8 +347,13 @@ function checkUser(req, res, next) {
 // res.render('protected.ejs');
 //   });
 app.get("/favorites", function(req, res) {
-    res.render('favorites')
-  });
+    var user =req.user;
+    res.render('favorites', {
+        user : user
+    })
+});
+
+
 // app.get('/favorites', function(req, res, prod) {
 //     Annonce.find({}, function(err, prod) {
 //         var favProd = {}

@@ -1,23 +1,29 @@
 <% include partials/header_in.ejs %>
-<% include partials/nav.ejs %>
+<%- include("partials/nav.ejs", {user : user})%>
 <div class="container in">
     <div class="row">
-        <div class="col-lg-6">
-            <a href="/logout">Se déconnecter</a>
+        <div class="col-lg-12">
+            <a class="logout" href="/logout">Déconnexion <i class="fas fa-times"></i></a>
             <h1>Bienvenue sur votre compte <%= user.username %></h1>
-            <% if (prod) { 
-                if(prod.length > 1) {%>
+            <% 
+                if (prod) { 
+                if(prod.length === 1) {%>
                     <p>Voici les annonces que vous avez posté : </p>
                 <%}
-                else {%>
+                if(prod.length > 1) {%>
                     <p>Voici l'annonce que vous avez posté : </p>
+                <%}%>   
+            <div class="card" style="width: 40%;">
+                <%for (var i = 0; i < prod.length; i++) {%>
+                <div class="card-body">
+                    <a class="cardLink" href="annonce/<%=prod[i]._id%>">
+                        <img class="card-img-top" src="/uploads/<%=prod[i].photo[0].filename %>" alt="<%=prod[i].title %>">
+                        <h5 class="card-title text-center"><%=prod[i].title %></h5>
+                    </a>
+                </div>
                 <%}
-                for (var i = 0; i < prod.length; i++) {%>
-            <ul>
-                <li><a href="annonce/<%=prod[i]._id%>"><%=prod[i].title %></a></li>
-            </ul>
-            <% }
-        } %>
+            }%>
+              </div>
         </div>
     </div>
 </div>

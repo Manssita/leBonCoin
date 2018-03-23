@@ -5,26 +5,38 @@
         <div class="col-lg-12">
             <a class="logout" href="/logout">Déconnexion <i class="fas fa-times"></i></a>
             <h1>Bienvenue sur votre compte <%= user.username %></h1>
-            <% 
-                if (prod) { 
+            <%if (prod) { 
                 if(prod.length === 1) {%>
                     <p>Voici les annonces que vous avez posté : </p>
                 <%}
                 if(prod.length > 1) {%>
                     <p>Voici l'annonce que vous avez posté : </p>
-                <%}%>   
-            <div class="card" style="width: 40%;">
-                <%for (var i = 0; i < prod.length; i++) {%>
-                <div class="card-body">
-                    <a class="cardLink" href="annonce/<%=prod[i]._id%>">
-                        <img class="card-img-top" src="/uploads/<%=prod[i].photo[0].filename %>" alt="<%=prod[i].title %>">
-                        <h5 class="card-title text-center"><%=prod[i].title %></h5>
-                    </a>
+                <%}   
+                if(prod.length === 0) {%>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p>Vous n'avez pas encore posté d'annonces, <br />
+                            Pour le faire, il suffit de <a class="pushLink" href="/deposer">cliquer ici</a></p>
+                        </div>
+                    </div>
+                <%}%>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <%for (var i = 0; i < prod.length; i++) {%>
+                                <div class="card-body">
+                                    <a class="cardLink" href="annonce/<%=prod[i]._id%>">
+                                        <img class="card-img-top" src="/uploads/<%=prod[i].photo[0].filename %>" alt="<%=prod[i].title %>">
+                                        <h5 class="card-title text-center"><%=prod[i].title %></h5>
+                                    </a>
+                                </div>
+                            <%}%>
+                        </div>
+                    </div>
                 </div>
-                <%}
-            }%>
-              </div>
+            <%}%>
         </div>
     </div>
+ 
 </div>
 <% include partials/footer.ejs %>

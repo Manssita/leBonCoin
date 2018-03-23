@@ -5,10 +5,6 @@
         <div class="col-lg-8 bloc">
             <h1><%= prod.title%></h1>
             <p><%= prod.offer%></p>
-            <% if(prod.photo.length < 2) {%> 
-            <img class="justify-item-center visualProd" src="/uploads/<%= prod.photo[0].filename%>" />
-            <%}
-            else { %>
 
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
@@ -35,8 +31,6 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    
-            <%}%>
             <p><%= prod.pseudo%> - <%= prod.type%></p>
 
             <div class="row borderLast">

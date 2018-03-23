@@ -1,209 +1,251 @@
 h1 {
-    font-size: 18px;
-    line-height: 27px;
-    color: #989898;
-    font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  color: #989898;
+}
+
+p {
+  font-size: 13px;
+}
+
+.bandeau p {
+  font-size: 16px;
 }
 
 .in {
-    padding: 70px 0;
+  padding: 70px 0;
 }
 .bandeau {
-    background: grey;
+  background: grey;
 }
 .navbar {
-    background: #f36b36 !important;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
+  background: #f36b36 !important;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 .actif {
-    background: #f36b36 !important;
+  background: #f36b36 !important;
 }
-.navbar li a{
-    color: #fff !important;
-    text-transform: uppercase;
-    font-size: 12px;
+.navbar li a {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .logo {
-    width: 100px;
+  width: 100px;
 }
 
 .form_offer {
-    margin-top: 30px;
-    border: 1px solid grey;
-    padding: 10px;
+  margin-top: 30px;
+  border: 1px solid grey;
+  padding: 10px;
 }
 
 .bloc {
-    border: 1px solid grey;
-    padding-bottom: 20px;
-    margin: 20px 10px 0 0;
+  border: 1px solid grey;
+  padding-bottom: 20px;
+  margin: 20px 10px 0 0;
 }
 .bloc:first-child {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
-
-.offer{
-    margin-top: 20px;
+.offer {
+  margin-top: 20px;
 }
 .offer img.visualProd {
-    max-width: 390px;
-    max-height: 390px;
-    display: block;
-    margin: 20px auto;
+  max-width: 390px;
+  max-height: 390px;
+  display: block;
+  margin: 20px auto;
 }
 
 .title_bloc {
-    background: #F2F2F2;
+  background: #f2f2f2;
 }
 
 .borderLast {
-    border-bottom: 1px solid #dee2e6;
-    border-top: 1px solid #dee2e6;
-
+  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid #dee2e6;
 }
-.borderLast:last-child{
-    border-top: none;
+.borderLast:last-child {
+  border-top: none;
 }
 .offerHome img {
-    width: 80%;
+  width: 80%;
 }
 
 .offerHome {
-    padding: 10px;
+  padding: 10px;
 }
 
-input:focus:invalid, textarea:focus:invalid {
-    border: 1px solid red;
+input:focus:invalid,
+textarea:focus:invalid {
+  border: 1px solid red;
 }
 
 .price {
-    font-weight: bold;
-    color: #f36b36;
+  font-weight: bold;
+  color: #f36b36;
 }
 
 .title {
-    font-weight: bold;
-    color: #416F9A;
+  font-weight: bold;
+  color: #416f9a;
 }
 
 .showTel {
-    font-weight: bold;
-    background: #f36b36;
-    color: #fff;
-    text-align: center;
-    margin-top: -40px;
-    z-index: 10;
-    position: relative;
+  font-weight: bold;
+  background: #f36b36;
+  color: #fff;
+  text-align: center;
+  margin-top: -40px;
+  z-index: 10;
+  position: relative;
 }
 
 .showTel:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .showTel .fa-phone {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .subMenu a {
-    display: inline-block;
-    background: #5096EC;
-    color: #fff;
-    padding: 5px;
-    text-decoration: none;
+  display: inline-block;
+  background: #5096ec;
+  color: #fff;
+  padding: 5px;
+  text-decoration: none;
 }
 .subMenu a:hover {
-    background: #f36b36;
+  background: #f36b36;
 }
 
 .editLink a {
-    display: block;
-    background: #F2F2F2;
-    color: #000;
-    padding: 5px;
-    text-decoration: none;
-    text-align: center;
+  display: block;
+  background: #f2f2f2;
+  color: #000;
+  padding: 5px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .editLink a:first-child {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .editLink a:hover {
-    background: #5096EC;
-    color: #fff;
+  background: #5096ec;
+  color: #fff;
 }
 
 #map {
-    height: 300px;;
+  height: 300px;
 }
 
 .fav {
-    color: #CCCCCC;
+  color: #cccccc;
 }
 
 .favActive {
-    color: #D9453D;
-    margin-top: -40px;
+  color: #d9453d;
+  margin-top: -40px;
 }
 
-.fav:hover, .favActive:hover {
-    cursor: pointer;
+.fav:hover,
+.favActive:hover {
+  cursor: pointer;
 }
 
 .none {
-    display: none;
+  display: none;
 }
 
 .carousel {
-    width: 60%;
-    margin: 0 auto;
+  width: 60%;
+  margin: 0 auto;
 }
 
 footer {
-    padding: 20px 0;
-    background: #989898;
-    color: #fff;
-    font-size: 14px;
-    line-height: 18px;
+  padding: 20px 0;
+  background: #989898;
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
 }
-
 
 footer .twitter {
-    color: #1EB1EB;
+  color: #1eb1eb;
 }
 footer .facebook {
-    color: #3D5A96;
-    margin-right: 5px;
+  color: #3d5a96;
+  margin-right: 5px;
 }
 footer .foot {
-    height: 60px;
+  height: 60px;
 }
 
 .listProd li {
-    list-style: none;
-    flex-direction: row;
+  list-style: none;
+  flex-direction: row;
 }
 
 .listProd li img {
-    max-width: 200px;
+  max-width: 200px;
 }
 .cardLink:hover {
-    text-decoration: none;
-    color: #007bff
+  text-decoration: none;
+  color: #007bff;
 }
 .cardLink {
-    color: #000;
+  color: #000;
 }
 .cardLink h5 {
-    margin-top: 5px;
-    font-weight: normal;
+  margin-top: 5px;
+  font-weight: normal;
 }
 
-.logout:hover {
-    text-decoration: none;
-    color: #F16B3F;
+.logout {
+  margin-bottom: 30px;
+  display: inline-block;
+}
+.logout:hover,
+.pushLink:hover {
+  text-decoration: none;
+  color: #f16b3f;
+}
+
+.pagination {
+  padding: 30px 0;
+}
+.pagination span {
+  margin: 0 5px;
+}
+.pagination span a {
+  color: #34679d;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.pagination span a:hover {
+  color: #fff;
+  font-size: 14px;
+  background: #f16b3f;
+  border-radius: 3px;
+}
+
+.paginationActif {
+  color: #fff !important;
+  font-size: 14px !important;
+  background: #f16b3f;
+  text-decoration: none;
+  border-radius: 3px;
 }

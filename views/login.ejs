@@ -2,12 +2,19 @@
 <%- include("partials/nav.ejs", {user : user})%>
 
 <div class="container in">
-    <div class="row bloc">
+    <div class="row">
         <div class="col-lg-6">
-            <form action= "/login" method="POST">
-                <input type="text" name="username" placeholder="username" />
-                <input type="password" name="password" placeholder="password" />
-                <input type="submit" />
+            <form class="form_offer" action= "/login" method="POST">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Username</label>
+                    <input type="text" name="username" class="form-control" id="formGroupExampleInput" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Password</label>
+                    <input type="password" name="password" class="form-control" id="formGroupExampleInput" required />
+                </div>
+                    <input type="submit" class="btn btn-primary" />
             </form>
             Si vous n'avez pas de compte : <a href="/register">créer mon compte</a>
         </div>

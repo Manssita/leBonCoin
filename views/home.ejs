@@ -13,19 +13,34 @@
                             <p><%= prod[i].city%></p>
                             <p class="price"><%= prod[i].price%> &euro;</p>
                         </div>
-                        <div class="d-flex justify-content-end col-lg-4">
-                            <a class="linkFav" href="/favorites"><p class="fav"><i class="far fa-heart"></i></p>
-                            <p class="favActive none"><i class="fas fa-heart"></i></p>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
-        <% } %>
-        <ul>
-            <% for (var j = 1; j < count+1; j++) { %>
-                <li><a href="/?p=<%= j %>"><%= j %></a></li>
-                <% }%>
-        </ul>
+            <% }
+                var num = 2;
+                var num2 = Math.ceil(count / num);
+            %>
+            <div class="pagination d-flex justify-content-center">
+
+                <% for (var j = 1; j < num2+1; j++) {
+                    if(page){
+                        if(page == j) {%>
+                            <span><a class="ok<%=j%> paginationActif" href="/?p=<%= j %>"><%= j %></a></span>
+                        <%}
+                        else{%>
+                            <span><a class="ok<%=j%>" href="/?p=<%= j %>"><%= j %></a></span>
+                        <%}
+                    }
+                    else{
+                        if(j === 1) {%>
+                            <span><a class="ok1 paginationActif" href="/?p=<%= j %>"><%= j %></a></span>
+                        <%}
+                        else{%>
+                            <span><a class="ok<%=j%>" href="/?p=<%= j %>"><%= j %></a></span>
+                        <%}
+                    }
+                }%>
+
+            </div>
     </div> 
 <% include partials/footer.ejs %>
